@@ -21,25 +21,25 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
   
 # Clases
 
-*  Inventario
+##  Inventario
 - Id Del Libro
 - Inventario
-- -Valor
+- Valor
 - Disponible a la Venta
 - Disponible a el Prestamo
   
-*  Libros
+##  Libros
 - Id Libro
 - Genero(s)
 - Editorial
 - Version
 - Autor
 - Paginas
-- Nombre
+- Titulo
 - Portada
 - Sinopsis
 
-*  Usuario
+##  Usuario
 - Nombre
 - Email
 - Contraseña
@@ -47,24 +47,24 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - Libros Comprados
 - Habilitado para Prestamo?
 
-*  Prestamo
+##  Prestamo
 -  Id Libro
 -  Id Prestamo
 -  Id Usuario
 -  Tiempo Maximo de Prestamo
 -  Se regreso?
 
-*  Compras
+##  Compras
 - Tarjeta / Método de Pago
 - Id Usuario
 - Id Carrito
 - Costo Total 
 - ID Transaccion
   
-* Transaccion
+##  Transaccion
 - Datos de Transacciones (Los Permitidos)
 
-* Carrito
+##  Carrito
 - ID objeto Carrito
 - ID Carrito
 - ID Usuario
