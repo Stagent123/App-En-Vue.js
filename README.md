@@ -51,7 +51,9 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 -  Id Libro
 -  Id Prestamo
 -  Id Usuario
--  Tiempo Maximo de Prestamo
+-  Fecha Inicial
+-  Fecha Regresado
+-  Fecha Limite
 -  Se regreso?
 
 ##  Compras
