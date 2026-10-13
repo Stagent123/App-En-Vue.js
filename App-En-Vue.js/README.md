@@ -5,41 +5,41 @@ App creada en Vue.js (Biblioteca con API de Pago y APi de Inicio de Sesion)
 consistirá en una app simple con la posibilidad de agregar Libros a la biblioteca, añadir libros a la biblioteca con la posibilidad de comprar libros o pedirlos prestados (Debe tener una cuenta) 
 
 
-# acciones 
+# Acciones 
 
 * CRUD de Biblioteca
 * Creacion de Usuarios
 * Api de Pagos
 * WebHook de Pagos
 
-#Usuarios
+# Usuarios
 
 * Gerente
 * Cliente
 * Cajero
 * Inventario
   
-#Clases
+# Clases
 
-*  Inventario
+##  Inventario
 - Id Del Libro
 - Inventario
-- -Valor
+- Valor
 - Disponible a la Venta
 - Disponible a el Prestamo
   
-*  Libros
+##  Libros
 - Id Libro
 - Genero(s)
 - Editorial
 - Version
 - Autor
 - Paginas
-- Nombre
+- Titulo
 - Portada
 - Sinopsis
 
-*  Usuario
+##  Usuario
 - Nombre
 - Email
 - Contraseña
@@ -47,24 +47,26 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - Libros Comprados
 - Habilitado para Prestamo?
 
-*  Prestamo
+##  Prestamo
 -  Id Libro
 -  Id Prestamo
 -  Id Usuario
--  Tiempo Maximo de Prestamo
+-  Fecha Inicial
+-  Fecha Regresado
+-  Fecha Limite
 -  Se regreso?
 
-*  Compras
+##  Compras
 - Tarjeta / Método de Pago
 - Id Usuario
 - Id Carrito
 - Costo Total 
 - ID Transaccion
   
-* Transaccion
+##  Transaccion
 - Datos de Transacciones (Los Permitidos)
 
-* Carrito
+##  Carrito
 - ID objeto Carrito
 - ID Carrito
 - ID Usuario
