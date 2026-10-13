@@ -72,7 +72,7 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - ID Usuario
 - Id Compra
 
-* Objeto Carrito
+## Objeto Carrito
 - Id Libro
 - Cantidad
 - ID Carro
