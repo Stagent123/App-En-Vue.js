@@ -27,6 +27,11 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - Valor
 - Disponible a la Venta
 - Disponible a el Prestamo
+
+### acciones de Inventario
+- Listar por (Autor, Genero, Fecha de Publicacion)
+- CRUD Inventario (Excepto Crear, los libros se crean desde su propia clase)
+- TBT 
   
 ##  Libros
 - Id Libro
@@ -39,13 +44,38 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - Portada
 - Sinopsis
 
+### acciones de Libros
+- Crud Libros
+
+
+## Generos
+- Nombre
+- ID
+
+### acciones de Generos
+- CRUD Generos
+
+## Genero de Libro (Clase generada para unir varios Generos a un mismo Libro) 
+ID Libro
+ID Genero
+
 ##  Usuario
 - Nombre
 - Email
+- Telefono
 - Contraseña
 - Foto de Perfil
 - Libros Comprados
 - Habilitado para Prestamo?
+
+### acciones de usuarios
+- CRUD Usuario
+- Cambiar Foto Perfil
+- Solicitar Prestamos
+- Hacer Compras
+- Devolver Libro
+- Generar Usuarios (nivel cliente y nivel empresarial**)
+- Desactivar Usuarios
 
 ##  Prestamo
 -  Id Libro
@@ -63,8 +93,16 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 - Costo Total 
 - ID Transaccion
   
-##  Transaccion
-- Datos de Transacciones (Los Permitidos)
+
+## Metodo Pago
+- Fecha de La Transaccion (Para ambos tipos)
+- Tipo (Tarjeta / Efectivo)
+- (si es Tarjeta) Debito / Credito
+- Nro Tarjeta
+- Cuotas
+
+- (Si es Efectivo) no se agrega nada 
+
 
 ##  Carrito
 - ID objeto Carrito
