@@ -1,10 +1,15 @@
 from rest_framework import serializers
 from Compras.models import Compra,MetodoPago,Carrito,Transaccion,Objeto_Carrito
 
+class TransaccionSerializer(serializers.ModelSerializer):
+    class Meta:
+        models = Transaccion
+        fields = '__all__'
+
 class MetodoPagoSerializer(serializers.ModelSerializer):
     class Meta:
         models = MetodoPago
-        fields = -'__all__'
+        fields = '__all__'
 
 class CarritoSerializer(serializers.ModelSerializer):
     class Meta: 
