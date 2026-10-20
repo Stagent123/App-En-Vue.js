@@ -1,39 +1,29 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 
-
-
-
-class CustomUserManager(BaseUserManager):
-    def create_user(self, email,username, Password,** extra_fields):
+class UserManager(BaseUserManager):
+    def create_user(self,email,password=None, **extra_fields):
         if not email:
-            raise ValueError("El campo de email debe contener un email")
+            raise ValueError("Email es requerido")
         email = self.normalize_email(email)
-        user = self.model(email=email,password=Password, username=username, **extra_fields)
-        user.save(using=self.db)
+        user = self.model(email=email, password=password,**extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
         return user
-    def create_superuser (self, email , username, Password, **extra_fields):
-        extra_fields.setdefault("is_staff,True")
-        extra_fields.setdefault("is_superuser",True)
-        extra_fields.setdefault("is_active",True)
-        return self.create_user(email,username,Password, **extra_fields)
+    def create_superuser(self,email,password=None,**extra_fields):
+        extra_fields.setdefault('is_staff',True)
+        extra_fields.setdefault('is_superuser',True)
+        return self.create_user(email,password,**extra_fields)
 
-class CustomUser(models.Model, PermissionsMixin):
-    email= models.EmailField(unique=True)
-    password= models.CharField()
-    username= models.CharField()
-    is_active = models.BooleanField()
-    is_staff = models.BooleanField()
-    date_joined = models.DateTimeField(auto_now_add=True)
-    objets = CustomUserManager()
+class Usuario(AbstractBaseUser,PermissionsMixin):
+    email = models.EmailField(unique=True)
+    nombre =models.CharField(max_length=60)
+    telefono = models.IntegerField(max_length=10)
+    foto = models.FileField()
+    prestamos = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD  = 'email'
-    REQUIRED_FIELD = ["username", "password"]
+    objects = UserManager()
 
-    def __str__(self):
-        return self.email
-
-class Usuario(models.Model):
-    ID = models.IntegerField(primary_key=True)
-    Nombre = models.CharField
-    password = models.passwordField
+    USERNAME_FIELD = 'email'
