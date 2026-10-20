@@ -33,3 +33,10 @@ class Prestamo(models.Model):
     Fecha_Maxima = models.DateField()
     Regresado = models.BooleanField()
 
+
+class Genero(models.Model):
+    nombre = models.CharField(max_length=50)
+
+class Libro_Genero(models.Model):
+    ID_Libro = models.ForeignKey(Libros,on_delete=models.CASCADE)
+    ID_Genero = models.ForeignKey(Genero,on_delete=models.CASCADE)
