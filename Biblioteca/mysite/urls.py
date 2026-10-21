@@ -25,5 +25,4 @@ urlpatterns = [
     path('api/Compras/', include(UrlsCompras)),
     path('api/Usuarios/',include(UrlsUsuario)),
     path('api/Biblioteca/',include(UrlsBiblioteca))
-
 ]

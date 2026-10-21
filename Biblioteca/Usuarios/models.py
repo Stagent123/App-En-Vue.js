@@ -18,8 +18,8 @@ class UserManager(BaseUserManager):
 class Usuario(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(unique=True)
     nombre =models.CharField(max_length=60)
-    telefono = models.IntegerField(max_length=10)
-    foto = models.FileField()
+    telefono = models.IntegerField( blank=True,  null=True, default=0)
+    foto = models.FileField( blank=True, null=True)
     prestamos = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

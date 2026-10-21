@@ -9,6 +9,6 @@ router.register(r'Prestamos',PrestamoViewSet,basename='prestamo')
 router.register(r'Genero',GeneroViewSet,basename='genero')
 router.register(r'LibroGenero',LibroGeneroViewSet,basename='librogenero')
 
-UrlsBiblioteca = {
+UrlsBiblioteca = [
     path ('',include(router.urls))
-}
+]

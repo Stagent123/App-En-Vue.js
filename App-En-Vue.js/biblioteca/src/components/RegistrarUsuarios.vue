@@ -65,13 +65,13 @@
                     foto: '',
                 },
                 repassword:''
-            }
+            } 
         },
         methods: {
             async enviardatos(){
                 if (this.form.password === this.repassword) {
                     try {
-                        const respoonse = await axios #Url
+                        const respoonse = await Axios('http://127.0.0.1:8000/api/Usuarios/Usuario/', form.data) 
                         this.form = {
                             nombre: '',
                             email: '',
