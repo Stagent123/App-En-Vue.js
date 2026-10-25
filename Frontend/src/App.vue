@@ -1,28 +1,21 @@
 <template>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container mt-4">
+    <h1>Prueba General de Router</h1>
+    
+    <!-- Navegación -->
+    <nav class="mb-4">
+      <router-link to="/" class="btn btn-secondary me-2">Ir a Home</router-link>
+      <router-link to="/Listado/Usuarios" class="btn btn-primary">Ver Usuarios</router-link>
+    </nav>
+
+    <!-- EL MOTOR DEL ROUTER: Aquí se debe ver TODO según la URL -->
+    <hr>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-
-
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name: 'App'
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
