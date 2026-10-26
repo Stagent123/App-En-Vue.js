@@ -12,7 +12,7 @@
                     <p class="card-text">{{ Libros.Sinopsis }}</p>
                     <div v-for="Genero in Libros.Generos">
                         <p class="card-text">{{ Genero }}</p>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </li>

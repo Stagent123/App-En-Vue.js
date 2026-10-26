@@ -71,7 +71,7 @@
             async enviardatos(){
                 if (this.form.password === this.repassword) {
                     try {
-                        const respoonse = await Axios('http://127.0.0.1:8000/api/Usuarios/Usuario/', form.data) 
+                        const respoonse = await Axios('http://127.0.0.1:8000/api/Usuarios/Usuario/', this.form.data) 
                         this.form = {
                             nombre: '',
                             email: '',
@@ -82,8 +82,6 @@
                         console.log("Datos Enviados")
                     } catch (error) {
                         console.log("Error");
-                        
-
                     }
                 }
             }
