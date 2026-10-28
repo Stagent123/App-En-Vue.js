@@ -16,6 +16,13 @@ class UserManager(BaseUserManager):
         return self.create_user(email,password,**extra_fields)
 
 class Usuario(AbstractBaseUser,PermissionsMixin):
+    class Rol(models.TextChoices):
+        CLIENTE = 'cliente' , 'Cliente' 
+        EMPLEADO= 'empleado', 'Empleado'
+        GERENTE= 'gerente' , 'Gerente'
+
+
+    rol = models.CharField(max_length=20 , choices=Rol.choices, default=Rol.CLIENTE)
     email = models.EmailField(unique=True)
     nombre =models.CharField(max_length=60)
     telefono = models.IntegerField( blank=True,  null=True, default=0)
