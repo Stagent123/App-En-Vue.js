@@ -6,11 +6,13 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate,login,logout
 from rest_framework.views import APIView
 from rest_framework import status
+from Usuarios.permissions import permissions, isGerente
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset= Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    permission_classes = [permissions.IsAuthenticated, isGerente]
 
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -26,7 +28,7 @@ class LoginView(APIView):
         return Response({"error": "Invalid credencials"}, status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
-    permission_classes = [permission.isAuthenticated]
+    permission_classes = [permissions.isAuthenticated]
 
     def post(self,request):
         logout(request)
