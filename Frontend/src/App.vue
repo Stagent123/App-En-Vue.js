@@ -1,4 +1,5 @@
 <template>
+  <BarraSuperior> </BarraSuperior>
   <div id="app" class="container mt-4">
     <h1>Prueba General de Router</h1>
     
@@ -15,7 +16,11 @@
 </template>
 
 <script>
+import BarraSuperior from './components/BarraSuperior.vue';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    BarraSuperior
+  }
 }
 </script>
