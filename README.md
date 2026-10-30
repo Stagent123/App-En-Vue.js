@@ -85,6 +85,9 @@ ID Genero
 -  Fecha Regresado
 -  Fecha Limite
 -  Se regreso?
+-  Comentarios Extras
+-  Estado en el prestamo
+-  Estado en la Devolucion
 
 ##  Compras
 - Tarjeta / Método de Pago

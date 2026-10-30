@@ -9,6 +9,9 @@ from rest_framework import status
 from Usuarios.permissions import permissions, isGerente
 
 
+
+
+
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset= Usuario.objects.all()
     serializer_class = UsuarioSerializer
@@ -34,4 +37,18 @@ class LogoutView(APIView):
         logout(request)
         return Response({"message" : "Logged out successfully"}, status=status.HTTP_200_OK)
 
-# Create your views here.
+class CurrentUserView(APIView):
+  permission_classes = [permissions.IsAuthenticated]
+
+  def get(self, request):
+    user = request.user
+    data = {
+        'id': user.id,
+        'nombre': user.nombre,
+        'email': user.email,
+        'foto': user.foto,
+        'role': getattr(user, 'role', 'cliente'),
+        'is_superuser': user.is_superuser,
+        'is_staff': user.is_staff,
+    }
+    return Response(data, status=status.HTTP_200_OK)
