@@ -8,7 +8,7 @@ export const useUsuarioStore = defineStore('Users',{
                 nombre: '',
                 rol: 'ninguno',
                 foto: null,
-                permiso_prestamo: false,
+                prestamos: false,
                 is_superuser: false
             },
             autenticado: false,
@@ -25,12 +25,12 @@ export const useUsuarioStore = defineStore('Users',{
       try {
         const response = await api.get('/Usuarios/Auth/')
         this.user = response.data
-        this.isAuthenticated = true
+        this.autenticado = true
       } catch (error) {
         this.user = null
-        this.isAuthenticated = false
+        this.autenticado = false
       } finally {
-        this.loading = false
+        this.cargando = false
       }
     },
 
@@ -39,7 +39,7 @@ export const useUsuarioStore = defineStore('Users',{
         await api.post('/Usuarios/Logout/')
       } finally {
         this.user = null
-        this.isAuthenticated = false
+        this.autenticado = false
       }
     }
   }

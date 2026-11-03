@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from ..Usuarios.permissions import ComprasPermission, permissions
+from Usuarios.permissions import ComprasPermission, permissions
 from Compras.models import Transaccion,MetodoPago,Carrito,Objeto_Carrito
 from Compras.serializers import MetodoPagoSerializer,CarritoSerializer,ObjetoCarritoSerializer,TransaccionSerializer
 

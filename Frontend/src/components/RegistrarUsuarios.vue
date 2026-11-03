@@ -55,6 +55,7 @@
 <script>
     import Axios from 'axios'
     export default {
+        name: 'RegistrarUsuarios',
         data(){
             return {
                 form: {

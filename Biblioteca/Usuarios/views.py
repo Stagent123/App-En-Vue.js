@@ -25,13 +25,13 @@ class LoginView(APIView):
         password = request.data.get('password')
 
         user = authenticate(request,username=username,password=password)
-        if user is None:
+        if user is not None:
             login(request,user)
             return Response({"message": 'Login Successful'}, status=status.HTTP_200_OK)
         return Response({"error": "Invalid credencials"}, status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutView(APIView):
-    permission_classes = [permissions.isAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self,request):
         logout(request)

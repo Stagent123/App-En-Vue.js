@@ -4,10 +4,11 @@ from Usuarios.views import UsuarioViewSet,LoginView,LogoutView,CurrentUserView
 
 router = DefaultRouter();
 router.register(r'Usuario',UsuarioViewSet,basename='usuario')
-router.register(r'Login',LoginView,basename='login')
-router.register(r'Logout',LogoutView,basename='logout')
-router.register(r'Auth',CurrentUserView,basename='auth')
+
 
 UrlsUsuario = [
+    path('Login',LoginView.as_view(),name='login'),
+    path('Logout',LogoutView.as_view(),name='logout'),
+    path('Auth',CurrentUserView.as_view(),name='auth'),
     path('',include(router.urls))
 ]
