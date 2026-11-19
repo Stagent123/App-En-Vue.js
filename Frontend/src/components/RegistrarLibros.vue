@@ -43,8 +43,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
-import Axios from 'axios'
+    import { api } from "@/servicios/api"
     export default {
         data(){
             return{
@@ -63,7 +62,7 @@ import Axios from 'axios'
         methods: {
             async enviardatos(){
                 try {
-                    const respoonse = await axios.post('http://127.0.0.1:8000/api/Biblioteca/Generos/', this.form)
+                    const respoonse = await api.post('/Biblioteca/Generos/', this.form)
                     this.form = {
                         titulo:'',
                         Editorial:'',

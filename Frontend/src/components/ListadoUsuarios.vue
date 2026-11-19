@@ -18,7 +18,8 @@
 
 
 <script>
-import axios from 'axios';
+
+import { api } from "@/servicios/api"
 export default {
     name: 'ListadoUsuarios',
     data (){ 
@@ -33,7 +34,7 @@ export default {
     methods: {
         async obtenerDatosUsuarios(){
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Usuarios/Usuario/') 
+                const response = await api.get('/Usuarios/Usuario/') 
                 if (response.data.length >= 1 ){
                     this.Datos_Recibidos = response.data
                     console.log('Datos obtenidos correctamente, estos son los datos: ',response.data)

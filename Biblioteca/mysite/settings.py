@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -24,7 +27,7 @@ SECRET_KEY = 'django-insecure-c9)04l&4=ac!h3qzcrrvqew^&$ah5(3^jt)e^x#mnanx#%z$um
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','http://localhost:8080']
 
 
 # Application definition
@@ -40,7 +43,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'Usuarios',
     'app',
-    'Compras'
+    'Compras',
+    'EstadoGithub'
 ]
 AUTH_USER_MODEL = 'Usuarios.Usuario'
 MIDDLEWARE = [
@@ -55,7 +59,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080"
+]
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8080'
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

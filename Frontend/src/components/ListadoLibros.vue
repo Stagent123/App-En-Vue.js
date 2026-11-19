@@ -23,7 +23,7 @@
 
 
 <script>
-import axios from 'axios';
+import { api } from "@/servicios/api"
 export default {
     name: 'ListadoLibros',
     data (){ 
@@ -38,7 +38,7 @@ export default {
     methods: {
         async obtenerDatosLibros(){
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Biblioteca/Libros/') 
+                const response = await api.get('/Biblioteca/Libros/') 
                 if (response.data.length >= 1 ){
                     this.Datos_Recibidos = response.data
                     console.log('Datos obtenidos correctamente, estos son los datos: ',response.data)

@@ -1,13 +1,16 @@
 <template>
-  <div v-if="UsuarioStore.cargando">
+  <div v-if="UsuarioStore.cargando != true">
     <BarraSuperior> </BarraSuperior>
+    <div>
+      <GithhubStatus></GithhubStatus>
+    </div>
   </div>
   <div id="app" class="container mt-4">
     <div v-if="UsuarioStore.autenticado === false">
-        <IniciarSesion> </IniciarSesion>
+        <IniciarSesion > </IniciarSesion>
         <div>
           <router-link to="RegistrarUsuario" ></router-link>
-        </div>
+        </div> 
     </div>
     
     <router-view></router-view>
@@ -20,9 +23,13 @@ import BarraSuperior from './components/BarraSuperior.vue';
 import IniciarSesion from './components/IniciarSesion.vue';
 import { onMounted } from 'vue';
 import { useUsuarioStore } from './Api/Store.js';
+import GithhubStatus from './components/GithhubStatus.vue';
 const UsuarioStore = useUsuarioStore();
 
 onMounted(() =>{
   UsuarioStore.fetchUser();
 })
+
+
+
 </script>

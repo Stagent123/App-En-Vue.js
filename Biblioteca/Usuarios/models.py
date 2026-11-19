@@ -26,7 +26,7 @@ class Usuario(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(unique=True)
     nombre =models.CharField(max_length=60)
     telefono = models.IntegerField( blank=True,  null=True, default=0)
-    foto = models.FileField( blank=True, null=True)
+    foto = models.FileField( blank=True, null=True,upload_to='User/',default='/User/default_pic.png')
     prestamos = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

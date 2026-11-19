@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import { api } from "@/servicios/api"
     export default {
         name: ListadoGenero,
         data(){
@@ -30,7 +30,7 @@
         methods:{
             async BuscarGeneros(){
                 try {
-                    const Respuesta = await axios.get('http://127.0.0.1:8000/api/Biblioteca/Generos/')
+                    const Respuesta = await api.get('/Biblioteca/Generos/')
                     if (Respuesta.data.length >= 1){
                         console.log('Se encontraron Generos')
                         this.DatosRecibidos = Respuesta

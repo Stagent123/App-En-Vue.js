@@ -7,7 +7,7 @@ router.register(r'Usuario',UsuarioViewSet,basename='usuario')
 
 
 UrlsUsuario = [
-    path('Login',LoginView.as_view(),name='login'),
+    path('Login/',LoginView.as_view(),name='login'),
     path('Logout',LogoutView.as_view(),name='logout'),
     path('Auth',CurrentUserView.as_view(),name='auth'),
     path('',include(router.urls))

@@ -6,8 +6,8 @@ consistirá en una app simple con la posibilidad de agregar Libros a la bibliote
 
 Datos de autenticacion de Usuario Admin
 
-Email:  
-Contraseña: 
+Email:  menzo4801@gmail.com 
+Contraseña: 34121
 
 
 # Acciones 

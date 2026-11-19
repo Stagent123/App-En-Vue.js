@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form id="Usuario" @submit.prevent="enviardatos" method="post">         </form>
+        <form id="Usuario" @submit.prevent="enviardatos" method="post"></form>
             <table>
                 <tr> 
                     <td>
@@ -53,7 +53,7 @@
 
 
 <script>
-    import Axios from 'axios'
+    import { api } from "@/servicios/api"
     export default {
         name: 'RegistrarUsuarios',
         data(){
@@ -72,7 +72,7 @@
             async enviardatos(){
                 if (this.form.password === this.repassword) {
                     try {
-                        const respoonse = await Axios('http://127.0.0.1:8000/api/Usuarios/Usuario/', this.form.data) 
+                        const respoonse = await api.post('/Usuarios/Usuario/', this.form.data) 
                         this.form = {
                             nombre: '',
                             email: '',

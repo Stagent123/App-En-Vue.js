@@ -2,31 +2,38 @@
     <div>
         <form @submit.prevent="Enviardatos" method="post">
             <table class="table table-primary">
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="Email" class="form-label"></label>
-                            <input v-model="form.Email" class="form-control" id="Email" type="text" placeholder="" aria-label="">
-                        </div>
-                    </td>   
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="password" class="form-label"></label>
-                            <input v-model="form.Password"  class="form-control" id="password" type="text" placeholder="" aria-label="">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="RePassword" class="form-label"></label>
-                            <input v-model="form.RePassword" class="form-control" id="Repassword" type="text" placeholder="" aria-label="">
-                        </div>
-                    </td>
-                </tr>
-                
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="mb-3">
+                                <label for="Email" class="form-label"> Ingrese su Email</label>
+                                <input v-model="form.Email" class="form-control" id="Email" type="text" placeholder="" aria-label="">
+                            </div>
+                        </td>   
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mb-3">
+                                <label for="password" class="form-label" >Ingrese su Contraseña</label>
+                                <input v-model="form.Password"  class="form-control" id="password" type="text" placeholder="" aria-label="">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mb-3">
+                                <label for="RePassword" class="form-label">Confirme su Contraseña</label>
+                                <input v-model="form.RePassword" class="form-control" id="RePassword" type="text" placeholder="" aria-label="">
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" >Enviardatos</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </form>
     </div>
@@ -36,23 +43,25 @@
 <script setup>
     import { reactive } from 'vue'; 
     import { useUsuarioStore } from '@/Api/Store';
-    import axios from 'axios';
-    const UsuarioStore = useUsuarioStore();
+    
+    import { api } from "@/servicios/api"
 
     const form = reactive({
         Email: '',
         Password: '',
         RePassword:''
     })
-
+    const UsuarioStore = useUsuarioStore();
     async function Enviardatos() {
-        if(RePassword === form.Password){
+        if(form.RePassword === form.Password){
            try{
-                await axios.post('http://127.0.0.1:8000/api/Usuarios/Login', {
+                await api.post('/Usuarios/Login/', {
                     email: form.Email,
-                    password: form.password
+                    password: form.Password
                 } )
-                console.log('Datos Enviados Correctamente') 
+                console.log('Datos Enviados Correctamente')
+                
+
             } catch(error){
                 console.log('Ocurrio un error : ',error)
            }
@@ -61,5 +70,14 @@
         else{
             console.log('Las contraseñas no coinciden')
         }
+        buscarUsuario();
     }
+    function buscarUsuario(){
+        UsuarioStore.fetchUser();
+    }
+    
+    
+
+
+
 </script>

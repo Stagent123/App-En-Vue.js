@@ -1,37 +1,42 @@
 <template>
-    <div>
+    <div class="recuadro">
         <table>
+            <tbody>
                 <tr>
-                    <div>
-                        <router-link to="/home" class="btn btn-primary me-2"> Inicio/Home </router-link>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="Libro" data-bs-toggle="dropdown" aria-expanded="false">
-                            Libros
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="Libros">
-                            <li>
-                                <router-link to="/" class="btn btn-primary me-2"> Registrar Libro </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/" class="btn btn-primary me-2"> Listar Libros  </router-link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="Inventario" data-bs-toggle="dropdown" aria-expanded="false">
-                            Inventario
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="">
-                            <li>
-                                <router-link to="/" class="btn btn-primary me-2"> Listar Inventario  </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/" class="btn btn-primary me-2"> Editar Inventario  </router-link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
+                    <td>
+                        <div>
+                            <router-link to="/home" class="btn btn-primary me-2"> Inicio/Home </router-link>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="Libro" data-bs-toggle="dropdown" aria-expanded="false">
+                                Libros
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="Libros">
+                                <li>
+                                    <router-link to="/" class="btn btn-primary me-2"> Registrar Libro </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/" class="btn btn-primary me-2"> Listar Libros  </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="Inventario" data-bs-toggle="dropdown" aria-expanded="false">
+                                Inventario
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="">
+                                <li>
+                                    <router-link to="/" class="btn btn-primary me-2"> Listar Inventario  </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/" class="btn btn-primary me-2"> Editar Inventario  </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="Compras" data-bs-toggle="dropdown" aria-expanded="false">
                                 Compras
@@ -48,6 +53,8 @@
                                 </li>
                             </ul>
                         </div>
+                    </td> 
+                    <td>
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="Prestamos" data-bs-toggle="dropdown" aria-expanded="false">
                                 Prestamos
@@ -67,6 +74,8 @@
                                 </li>
                             </ul>
                         </div>
+                    </td>
+                    <td>
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="" data-bs-toggle="dropdown" aria-expanded="false">
                                 Usuario
@@ -81,16 +90,17 @@
                                 <li>
                                     <router-link to="/" class="btn btn-primary me-2"> Listar Usuarios </router-link>
                                 </li>
-                            </ul>
-                        </div>
-                    </div>         
-                </tr>
-        </table>
-    </div>
+                        </ul>
+                    </div>
+                </td>         
+            </tr>
+        </tbody>
+    </table>
+</div>
 </template>
 
 <style>
-    .table {
+    .recuadro{
         width: 100%;
         height: 10%;      
     }

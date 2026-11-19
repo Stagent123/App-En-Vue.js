@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Axios from 'axios'
+    import { api } from "@/servicios/api"
     export default{
         data(){
             return {
@@ -25,10 +25,11 @@
         methods: {
             async enviardatos(){
                 try {
-                    const respoonse = await Axios('http://127.0.0.1:8000/api/Biblioteca/Genero/', this.form.data)
+                    const respoonse = await api.post('/Biblioteca/Genero/', this.form.data)
                     this.form = {
                         nombre: ''
                     }
+                    console.log(respoonse)
                 } catch (error) {
                     console.log("Error",error)
                 }
