@@ -1,11 +1,35 @@
 <template>
     <div>
+        <table>
+            <thead>
+                <tr>
+                    <td> ID     </td>
+                    <td> Nombre </td>
+                    <td> Modificar </td>
+                    <td> Borrar </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="Genero in DatosRecibidos">
+                    <td> {{ Genero.Id }}   </td>
+                    <td> {{ Genero.Nombre  }} </td>
+                    <td> ///Router Link Escrito Correctamente con Props incluidos
+                        <router-link :to="{ name: 'ModificarGenero, params: {{ Genero.id }}'}"> Modificar Genero </router-link> 
+                    </td>
+                    <td> <button action="BorrarGenero(Genero.Nombre)"> Eliminar </button> </td>
+                </tr>
+            </tbody>
+        </table>*
+
+
+
+
+
         <ul v-if="DatosRecibidos >= 1">
            <li v-for="Genero in DatosRecibidos">
              <div class="card" style="width:200px;">
                 <p> IDGenero: {{ Genero.Id }}</p>
                 <p> Nombre: {{ Genero.Nombre }}</p>
-
              </div>
 
            </li>
@@ -41,6 +65,22 @@
                 } catch(error){
                     console.log('Error', error)
                 }
+            },
+            async BorrarGenero(dato){
+                respuestapre = confirm('Usted quiere Borrar al genero ',dato)
+                if (respuestapre === true){
+                    try{
+                        const Respuesta = await api.delete('/Biblioteca/Generos/')
+                        if (Respuesta.status.is_success()){
+                            console.log('Error', error)
+                        }
+                        else{
+                            console.log('No se Encontro Genero para Borrar')
+                        }
+                    }catch (error) {
+                        console.log('Error',error)
+                    }    
+                }            
             }
         }
     }
