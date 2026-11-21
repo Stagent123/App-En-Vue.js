@@ -40,10 +40,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <button > Enviar </button>
+                        <button type="button" form="Usuario" @click="enviardatos()" class="btn btn-primary"> Enviar </button>
                     </td>
                     <td>
-                        <button > Borrar </button>
+                        <button type="button" form="Usuario" @click="Reset()" class="btn btn-secondary"> Borrar </button>
                     </td>
 
                 </tr>
@@ -80,11 +80,19 @@
                             telefono: '',
                             foto: '',
                         }
-                        console.log("Datos Enviados")
+                        console.log("Datos Enviados",respoonse)
                     } catch (error) {
                         console.log("Error");
                     }
                 }
+            },
+            Reset(){
+                this.form.nombre = '';
+                this.form.email = '';
+                this.form.password = '';
+                this.form.telefono = '';
+                this.form.foto = '';
+                this.repassword = '';
             }
         }
     }

@@ -37,6 +37,14 @@
                     </td>
                     ///Generos
                 </tr>
+                <tr>
+                    <td>
+                        <button type="button" form="Libros" @click="enviardatos()" class="btn btn-primary"></button>
+                    </td>
+                    <td>
+                        <button type="button" form="Libros" @click="Reset()" class="btn btn-secondary"> Borrar </button>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>
@@ -45,6 +53,16 @@
 <script>
     import { api } from "@/servicios/api"
     export default {
+        props: {
+            modo: {
+                type: String,
+                default: 'crear'
+            },
+            id: {
+                type: [String,Number],
+                default: null
+            }
+        },
         data(){
             return{
                 form: {
@@ -62,7 +80,7 @@
         methods: {
             async enviardatos(){
                 try {
-                    const respoonse = await api.post('/Biblioteca/Generos/', this.form)
+                    const respoonse = await api.post('/Biblioteca/Libros/', this.form)
                     this.form = {
                         titulo:'',
                         Editorial:'',
@@ -73,10 +91,20 @@
                         Sinopsis: '',
                         Generos: []
                     }
-                    console.log("Datos Enviados")
+                    console.log("Datos Enviados", respoonse)
                 } catch(error){
                     console.log("Error");
                 }
+            },
+            Reset(){
+                this.form.Titulo = '';
+                this.form.Editorial = '';
+                this.form.Version = '';
+                this.form.Paginas = 0;
+                this.form.Autor = '';
+                this.form.Portada = '';
+                this.form.Sinopsis = '';
+                this.form.Generos = []
             }
         }
     }

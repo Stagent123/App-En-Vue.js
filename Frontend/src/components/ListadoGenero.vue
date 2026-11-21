@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table>
+        <table v-if="DatosRecibidos >= 1">
             <thead>
                 <tr>
                     <td> ID     </td>
@@ -11,30 +11,15 @@
             </thead>
             <tbody>
                 <tr v-for="Genero in DatosRecibidos">
-                    <td> {{ Genero.Id }}   </td>
-                    <td> {{ Genero.Nombre  }} </td>
+                    <td> {{ Genero.id }}   </td>
+                    <td> {{ Genero.nombre  }} </td>
                     <td> ///Router Link Escrito Correctamente con Props incluidos
-                        <router-link :to="{ name: 'ModificarGenero, params: {{ Genero.id }}'}"> Modificar Genero </router-link> 
+                        <router-link :to="{ name: 'ModificarGenero', params: { id: Genero.id }}"> Modificar Genero </router-link> 
                     </td>
-                    <td> <button action="BorrarGenero(Genero.Nombre)"> Eliminar </button> </td>
+                    <td> <button @click="BorrarGenero(Genero.nombre, Genero.id )"> Eliminar </button> </td>
                 </tr>
             </tbody>
-        </table>*
-
-
-
-
-
-        <ul v-if="DatosRecibidos >= 1">
-           <li v-for="Genero in DatosRecibidos">
-             <div class="card" style="width:200px;">
-                <p> IDGenero: {{ Genero.Id }}</p>
-                <p> Nombre: {{ Genero.Nombre }}</p>
-             </div>
-
-           </li>
-
-        </ul>
+        </table>
         <p v-else> No Existen Generos</p>
     </div>
 </template>
@@ -66,13 +51,14 @@
                     console.log('Error', error)
                 }
             },
-            async BorrarGenero(dato){
-                respuestapre = confirm('Usted quiere Borrar al genero ',dato)
+            async BorrarGenero(dato,id){
+                const respuestapre = confirm(`¿Usted quiere borrar el Genero "${dato}"?`)
                 if (respuestapre === true){
                     try{
-                        const Respuesta = await api.delete('/Biblioteca/Generos/')
-                        if (Respuesta.status.is_success()){
+                        const Respuesta = await api.delete(`/Biblioteca/Generos/${id}`)
+                        if (Respuesta.status >= 200 && Respuesta.status < 300) {
                             console.log('Error', error)
+                            this.BuscarGeneros()
                         }
                         else{
                             console.log('No se Encontro Genero para Borrar')
