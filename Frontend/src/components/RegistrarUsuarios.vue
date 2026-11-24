@@ -1,5 +1,8 @@
 <template>
     <div>
+        <h1> {{ this.tituloVista }}</h1>
+    </div>
+    <div>
         <form id="Usuario" @submit.prevent="enviardatos" method="post"></form>
             <table>
                 <tr> 
@@ -56,6 +59,16 @@
     import { api } from "@/servicios/api"
     export default {
         name: 'RegistrarUsuarios',
+        props: {
+            modo: {
+                type: String,
+                default: 'crear'
+            },
+            id: {
+                type: [String,Number],
+                default: null
+            }
+        },
         data(){
             return {
                 form: {
@@ -68,18 +81,23 @@
                 repassword:''
             } 
         },
+        computed:{
+            esModificar(){
+                return this.modo === 'editar' && Boolean(this.id);
+            },
+            tituloVista(){
+                return this.esModificar ? 'Modificar Genero' : 'Registrar Genero'
+            }
+        },
+        async mounted(){
+            this.obtenerDatosGenero()
+        },
         methods: {
             async enviardatos(){
                 if (this.form.password === this.repassword) {
                     try {
                         const respoonse = await api.post('/Usuarios/Usuario/', this.form.data) 
-                        this.form = {
-                            nombre: '',
-                            email: '',
-                            password: '',
-                            telefono: '',
-                            foto: '',
-                        }
+                        this.Reset();
                         console.log("Datos Enviados",respoonse)
                     } catch (error) {
                         console.log("Error");
@@ -93,9 +111,24 @@
                 this.form.telefono = '';
                 this.form.foto = '';
                 this.repassword = '';
+            },
+            async obtenerDatosGenero(){
+                try {
+                    const response = await api.get(`/Usuarios/Usuario/${this.id}`) 
+                    if (response.data.length >= 1 ){
+                        this.form = response.data;
+                        console.log('Datos obtenidos correctamente, estos son los datos: ',response.data)
+                    }
+                    else {
+                        console.log ('No existe ningun dato para mostrar')
+                    }
+                } catch(error){
+                    console.log('Error',error)
+                }
             }
         }
     }
+    
 
 
 </script>

@@ -1,5 +1,8 @@
 <template>
     <div>
+        <h1> {{ this.tituloVista }}</h1>
+    </div>
+    <div>
         <form id="Libros" @submit.prevent="enviardatos" methods="post">
             <table>
                 <tr>
@@ -77,6 +80,17 @@
                 }
             }
         },
+        computed:{
+            esModificar(){
+                return this.modo === 'editar' && Boolean(this.id);
+            },
+            tituloVista(){
+                return this.esModificar ? 'Modificar Genero' : 'Registrar Genero'
+            }
+        },
+        async mounted(){
+            this.obtenerDatosGenero()
+        },
         methods: {
             async enviardatos(){
                 try {
@@ -105,6 +119,20 @@
                 this.form.Portada = '';
                 this.form.Sinopsis = '';
                 this.form.Generos = []
+            },
+            async obtenerDatosGenero(){
+                try {
+                    const response = await api.get(`/Biblioteca/Libros/${this.id}`) 
+                    if (response.data.length >= 1 ){
+                        this.form = response.data
+                        console.log('Datos obtenidos correctamente, estos son los datos: ',response.data)
+                    }
+                    else {
+                        console.log ('No existe ningun dato para mostrar')
+                    }
+                } catch(error){
+                    console.log('Error',error)
+                }
             }
         }
     }

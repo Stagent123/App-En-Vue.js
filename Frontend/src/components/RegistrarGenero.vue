@@ -26,6 +26,16 @@
 <script>
     import { api } from "@/servicios/api"
     export default{
+        props: {
+            modo: {
+                type: String,
+                default:'crear'
+            },
+            id: {
+                type: [String,Number],
+                default:null
+            }
+        },  
         data(){
             return {
                 form: {
@@ -74,11 +84,11 @@
             Reset(){
                 this.form.nombre = '';
             },
-                async obtenerDatosGenero(){
+            async obtenerDatosGenero(){
                 try {
                     const response = await api.get(`/Biblioteca/Genero/${this.id}`) 
                     if (response.data.length >= 1 ){
-                        this.Datos_Recibidos = response.data
+                        this.form = response.data
                         console.log('Datos obtenidos correctamente, estos son los datos: ',response.data)
                     }
                     else {
