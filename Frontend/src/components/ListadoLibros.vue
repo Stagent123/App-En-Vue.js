@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="Libros in Datos_Recibidos">
+                <tr v-for="Libros in Datos_Recibidos" :key="Libros.id">
                     <td> {{ Libros.id }}   </td>
                     <td> {{ Libros.titulo }}</td>
                     <td> {{ Libros.editorial  }} </td>
@@ -26,8 +26,8 @@
                     <td> {{ Libros.paginas  }} </td>
                     <td> {{ Libros.sinopsis  }} </td>
                     <td >
-                        <div v-for="generolibro in Libros.Genero">
-                            <p> {{ generolibro }}</p>
+                        <div v-for="generolibro in Libros.Genero" :key="generolibro.id">
+                            <p> {{ generolibro.nombre }}</p>
                         </div>
                     </td>
                     <td> ///Router Link Escrito Correctamente con Props incluidos
@@ -85,7 +85,7 @@ export default {
                     try{
                         const Respuesta = await api.delete(`/Biblioteca/Libros/${id}`)
                         if (Respuesta.status >= 200 && Respuesta.status < 300) {
-                            console.log('Error', error)
+                            console.log('Error', Respuesta.error)
                             this.obtenerDatosLibros()
                         }
                         else{

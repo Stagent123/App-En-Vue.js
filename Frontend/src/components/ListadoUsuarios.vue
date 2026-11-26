@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="Usuarios in Datos_Recibidos">
+                <tr v-for="Usuarios in Datos_Recibidos" :key="Usuarios.id">
                     <td> {{ Usuarios.id }}   </td>
                     <td> {{ Usuarios.nombre  }} </td>
                     <td> {{ Usuarios.email  }} </td>
@@ -65,7 +65,7 @@ export default {
                     try{
                         const Respuesta = await api.delete(`/Biblioteca/Usuarios/Usuario/${id}`)
                         if (Respuesta.status >= 200 && Respuesta.status < 300) {
-                            console.log('Error', error)
+                            console.log('Error', Respuesta.error)
                             this.obtenerDatosLibros()
                         }
                         else{

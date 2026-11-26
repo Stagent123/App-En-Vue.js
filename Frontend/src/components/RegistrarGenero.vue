@@ -7,7 +7,7 @@
         <table>
             <tr>
                 <td>
-                    <input type="text" v-model="form.nombre" class="Formulario_Inputs" id="NombreFloating" placeholder="Escriba el Nombre del Genero" value="Nombre de Ejemplo"> </input> 
+                    <input type="text" v-model="form.nombre" class="Formulario_Inputs" id="NombreFloating" placeholder="Escriba el Nombre del Genero" value="Nombre de Ejemplo"> 
                     <label for="NombreFloating"> Ingrese el nombre del Genero </label>
                 </td>
             </tr>
@@ -80,7 +80,7 @@
                 } catch (error) {
                     console.log("Error",error)
                 }
-            },
+            }, 
             Reset(){
                 this.form.nombre = '';
             },

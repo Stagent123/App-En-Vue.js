@@ -1,64 +1,77 @@
 <template>
     <div>
-        <h1> {{ this.tituloVista }}</h1>
+        <h1> {{ tituloVista }}</h1>
     </div>
     <div>
-        <form id="Usuario" @submit.prevent="enviardatos" method="post"></form>
+        <form id="Usuario" @submit.prevent="enviardatos" method="post">
             <table>
-                <tr> 
-                    <td>
-                        <input type="text" v-model="form.nombre" class="Formulario_Inputs" id="NombreFloating" placeholder="Escriba Su Nombre" value="Nombre de Ejemplo" >  </input>
-                        <label for="NombreFloating"> Ingrese su Nombre </label>
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="email" v-model="form.email" class="Formulario_Inputs" id="EmailFloating" placeholder="Escriba Su Email" value="Ejemplo@email.com" >  </input>
-                        <label for="EmailFloating"> Ingrese su Email </label>
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="number" v-model="form.telefono" class="Formulario_Inputs" id="TelefonoFloating" placeholder="Escriba Su Telefono" value="99188213" >  </input>
-                        <label for="TelefonoFloating"> Ingrese su numero de Telefono </label>
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="Password" v-model="form.password" class="Formulario_Inputs" id="PasswordFloating" placeholder="Escriba Su Password" value="1234Password" >  </input>
-                        <label for="PasswordFloating"> Ingrese su Contraseña </label>
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="Password2" v-model="repassword" class="Formulario_Inputs" id="RePasswordFloating" placeholder="Repita Su Password" value="1234Password" >  </input>
-                        <label for="PasswordFloating"> Ingrese su Contraseña </label>
-                    </td>
-                </tr>
-                <tr> 
-                    <td>
-                        <input type="file" v-model="form.foto" class="Formulario_Inputs" id="FotoFloating" placeholder="Foto de Perfil" value="" >  </input>
-                        <label for="FotoFloating"> Ingrese su Foto de Perfil </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" form="Usuario" @click="enviardatos()" class="btn btn-primary"> Enviar </button>
-                    </td>
-                    <td>
-                        <button type="button" form="Usuario" @click="Reset()" class="btn btn-secondary"> Borrar </button>
-                    </td>
-
-                </tr>
-            </table>        
+                <thead> 
+                    <tr>
+                        <td>
+                                <h1> Datos del Usuario</h1>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr> 
+                        <td>
+                            <input type="text" v-model="form.nombre" class="Formulario_Inputs" id="NombreFloating" placeholder="Escriba Su Nombre" value="Nombre de Ejemplo" >
+                            <label for="NombreFloating"> Ingrese su Nombre </label>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="email" v-model="form.email" class="Formulario_Inputs" id="EmailFloating" placeholder="Escriba Su Email" value="Ejemplo@email.com" > 
+                            <label for="EmailFloating"> Ingrese su Email </label>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="number" v-model="form.telefono" class="Formulario_Inputs" id="TelefonoFloating" placeholder="Escriba Su Telefono" value="99188213" >  
+                            <label for="TelefonoFloating"> Ingrese su numero de Telefono </label>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="Password" v-model="form.password" class="Formulario_Inputs" id="PasswordFloating" placeholder="Escriba Su Password" value="1234Password" >  
+                            <label for="PasswordFloating"> Ingrese su Contraseña </label>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="Password2" v-model="repassword" class="Formulario_Inputs" id="RePasswordFloating" placeholder="Repita Su Password" value="1234Password" >  
+                            <label for="PasswordFloating"> Ingrese su Contraseña </label>
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <input type="image" v-model="form.foto" class="Formulario_Inputs" id="FotoFloating" placeholder="Foto de Perfil" value="" >  
+                            <label for="FotoFloating"> Ingrese su Foto de Perfil </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" form="Usuario" class="btn btn-primary"> Enviar </button>
+                        </td>
+                        <td>
+                            <button type="button" form="Usuario" @click="Reset()" class="btn btn-secondary"> Borrar </button>
+                        </td>
+                        <td>
+                            <button type="button" @click="volver()" class="btn btn-primary"> Volver</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>      
+        </form>  
     </div>
     </template>
 
 
 <script>
-    import { api } from "@/servicios/api"
+import { api } from "@/servicios/api"
+import {useUsuarioStore} from "@/Api/Store";
+
     export default {
-        name: 'RegistrarUsuarios',
         props: {
             modo: {
                 type: String,
@@ -93,14 +106,22 @@
             this.obtenerDatosGenero()
         },
         methods: {
+            volver(){
+                const UsuarioStore = useUsuarioStore();
+                UsuarioStore.cambiar();
+                this.$router.push('/Home');
+                },
             async enviardatos(){
                 if (this.form.password === this.repassword) {
                     try {
-                        const respoonse = await api.post('/Usuarios/Usuario/', this.form.data) 
+                        const response = await api.post('/Usuarios/Usuario/', this.form.data) 
                         this.Reset();
-                        console.log("Datos Enviados",respoonse)
+                        const UsuarioStore = useUsuarioStore();
+                        confirm(`Datos obtenidos correctamente, estos son los datos: ${JSON.stringify(response.data)} `)
+                        UsuarioStore.cambiar();
+                        await this.$router.push('/')
                     } catch (error) {
-                        console.log("Error");
+                        console.log("Error",error);
                     }
                 }
             },

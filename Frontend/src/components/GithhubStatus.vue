@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { api } from "@/servicios/api"
 
+
 const events = ref([])
 const loading = ref(true)
 

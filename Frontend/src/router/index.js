@@ -6,7 +6,6 @@ import ListadoLibros from "@/components/ListadoLibros.vue";
 import ListadoGenero from "@/components/ListadoGenero.vue";
 import RegistrarGenero from "@/components/RegistrarGenero.vue";
 import RegistrarLibros from "@/components/RegistrarLibros.vue";
-import { compile } from "vue";
 import RegistrarUsuarios from "@/components/RegistrarUsuarios.vue";
 const routes = [
     {
@@ -81,9 +80,6 @@ const routes = [
             id: route.params.id
         })
     }
-
-
-
 ]
 
 const router = createRouter({

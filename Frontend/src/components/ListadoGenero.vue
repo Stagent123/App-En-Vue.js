@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="Genero in DatosRecibidos">
+                <tr v-for="Genero in DatosRecibidos" :key="Genero.id">
                     <td> {{ Genero.id }}   </td>
                     <td> {{ Genero.nombre  }} </td>
                     <td> ///Router Link Escrito Correctamente con Props incluidos
@@ -27,7 +27,6 @@
 <script>
     import { api } from "@/servicios/api"
     export default {
-        name: ListadoGenero,
         data(){
             return{
                 DatosRecibidos: []
@@ -57,7 +56,7 @@
                     try{
                         const Respuesta = await api.delete(`/Biblioteca/Generos/${id}`)
                         if (Respuesta.status >= 200 && Respuesta.status < 300) {
-                            console.log('Error', error)
+                            console.log('Error', Respuesta.error)
                             this.BuscarGeneros()
                         }
                         else{

@@ -12,8 +12,9 @@ export const useUsuarioStore = defineStore('Users',{
                 prestamos: false,
                 is_superuser: false
             },
-            autenticado: false,
-            cargando: true,
+            autenticado: true,
+            cargando: false,
+            mostrarlogin: true
         }
     },
     getters: {
@@ -21,26 +22,28 @@ export const useUsuarioStore = defineStore('Users',{
         isAdmin: (state) => state.user?.is_superuser || false,
     },
     actions: {
-    async fetchUser() {
-      this.cargando = true
-      try {
-        const response = await api.get('/Usuarios/Auth')
-        this.user = response.data
-        this.autenticado = true
-      } catch (error) {
-        this.user = null
-        this.autenticado = false
-      } finally {
-        this.cargando = false
-      }
-    },
-
-    async logout() {
-      try {
-        await api.post('Usuarios/Logout/')
-      } finally {
-        this.user = null
-        this.autenticado = false
+      cambiar(){
+        this.mostrarlogin = !this.mostrarlogin
+        },
+      async fetchUser() {
+        this.cargando = true
+        try {
+          const response = await api.get('/Usuarios/Auth')
+          this.user = response.data
+          this.autenticado = true
+        } catch (error) {
+          this.user = null
+          this.autenticado = false
+        } finally {
+          this.cargando = false
+        }
+      },
+      async logout() {
+        try {
+          await api.post('Usuarios/Logout/')
+        } finally {
+          this.user = null
+          this.autenticado = false
       }
     }
   }
