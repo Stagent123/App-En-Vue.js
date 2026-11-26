@@ -1,7 +1,11 @@
 <template>
-    <div>
+    <div class="Principal">
+        <div class="recuadro">
+        <div>
+            <h1> Iniciar Sesion </h1>
+        </div>
         <form @submit.prevent="Enviardatos" method="post">
-            <table class="table table-primary">
+            <table  class="table table-primary">
                 <tbody>
                     <tr>
                         <td>
@@ -29,13 +33,15 @@
 
                     </tr>
                     <tr>
-                        <td>
-                            <button type="submit" >Enviardatos</button>
+                        <td class="botones">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="button" @click="cams" class="btn btn-primary">Ir a Registro</button> 
                         </td>
                     </tr>
                 </tbody>
             </table>
         </form>
+    </div>
     </div>
     
     </template>
@@ -43,9 +49,9 @@
 <script setup>
     import { reactive } from 'vue'; 
     import { useUsuarioStore } from '@/Api/Store';
-    
+    import { useRouter } from 'vue-router';
     import { api } from "@/servicios/api"
-
+    const router = useRouter();
     const form = reactive({
         Email: '',
         Password: '',
@@ -75,9 +81,43 @@
     function buscarUsuario(){
         UsuarioStore.fetchUser();
     }
+    function cams(){
+
+        
+        UsuarioStore.cambiar();
+        router.push('/Registrar/Usuarios');
+    }
+
     
     
 
 
 
 </script>
+
+<style>
+    .Principal{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+    }
+    .table{
+        width: 100%;
+
+    }
+    .recuadro{
+        width: 50%;
+    }
+    .btn{
+        margin-right: 15px;
+    }
+    h1{
+        text-align: center;
+    }
+    .botones{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
